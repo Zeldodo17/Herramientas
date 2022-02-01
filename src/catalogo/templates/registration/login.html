@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Herraminetas - Login | Registro</title>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'CSS/estilos.css' %}">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script>
+            function registrate(){
+                Swal.fire({
+                    "title": "Felicidades",
+                    "text": "Te has registrado correctamente",
+                    "icon": "success"
+                })
+                .then(function(result) {
+                    if (result.isConfirmed){
+                        window.location.href = "{% url 'registro' %}"
+                    }
+                })
+            }
+        </script>
+
+    </head>
+
+    <body style="background-image: url({% static 'img/bg4.png' %});">
+
+            <main>
+
+                <div class="contenedor__todo">
+                    <div class="caja__trasera">
+                        <div class="caja__trasera-login">
+                            <h3>¿Ya tienes una cuenta?</h3>
+                            <p>Ingresa tu usuario y contraseña</p>
+                            <button id="btn__iniciar-sesion">Iniciar Sesión</button>
+                        </div>
+                        <div class="caja__trasera-register">
+                            <h3>¿Aún no tienes una cuenta?</h3>
+                            <p>Regístrate ahora</p>
+                            <button id="btn__registrarse">Regístrarse</button>
+                        </div>
+                    </div>
+
+                    <!--Formulario de Login y registro-->
+                    <div class="contenedor__login-register">
+                        <!--Login-->
+                        <form action="" method="post" class="formulario__login" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <h2>Iniciar Sesión</h2>
+                            <p><label for="">Usuario</label></p>
+                            <p><input name="username" type="text" placeholder="Usuario"></p>
+
+                            <p style="margin-top: 20px;"><label for="">Contraseña</label></p>
+                            <p><input type="password" name="password" placeholder="Contraseña"></p>
+
+                            <button style="cursor: pointer; background: #46A2FD" type="submit">Entrar</button>
+                        </form>
+
+                        <!--Register-->
+
+                        <form action="{% url 'registro' %}" method="post" id="form" class="formulario__register" enctype="multipart/form-data">
+                             {% csrf_token %}
+                             <h2>Regístrarse</h2>
+
+                             <p><input type="text" name="nombres" id="nombre" placeholder="Nombre*" required></p>
+
+                             <p><input type="text" name="username" id="username" placeholder="Usuario*" required></p>
+
+                             <p><input type="text" name="email" id="email" placeholder="Email*" required></p>
+
+                             <p><input type="password" name="password" id="password" placeholder="Password*" required></p>
+
+                             <div class="mb-3">
+                                 <input class="form-control" type="file" id="formFile" name="imagen">
+                             </div>
+
+                             <button onclick="registrate()" style="background: #46A2FD; color: white" type="submit">Entrar</button>
+                        </form>
+
+                    </div>
+                </div>
+            </main>
+            <script src="{% static 'JS/script.js' %}"></script>
+    </body>
+</html>
