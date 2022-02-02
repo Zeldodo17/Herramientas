@@ -43,7 +43,6 @@ def Inicio(request):
     }
     return render(request, 'index.html', data)
 
-
 def vistaLoginRegister(request):
     formRegister = FormRegister()
 
@@ -52,7 +51,6 @@ def vistaLoginRegister(request):
         'nombre': 'Emilio',
     }
     return render(request, 'registration/login.html', data)
-
 
 def crear_usuario(request):
     print("Entró a la función CrearUsuario")
@@ -83,7 +81,6 @@ def crear_usuario(request):
     return render(request, 'registration/login.html', {
         'form': formulario
     })
-
 
 def download(request, path):
     file_path = os.path.join(settings.MEDIA_ROOT, path)
